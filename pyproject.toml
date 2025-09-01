@@ -1,0 +1,14 @@
+[project]
+name = "compamny-insight-agent"
+version = "0.1.0"
+description = "An AI agent designed to research a company"
+authors = [{ name = "Mike Charles", email = "serverlessmike@gmail.com" }]
+requires-python = ">=3.12"
+
+# Runtime dependencies here
+dependencies = [
+    "openai",
+    "gradio",
+    "python-dotenv",
+    "pydantic",
+]
