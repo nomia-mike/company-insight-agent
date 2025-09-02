@@ -8,8 +8,8 @@ requires-python = ">=3.12"
 # Runtime dependencies here
 dependencies = [
     "ipykernel",
-    "openai-agents",
     "gradio",
     "python-dotenv",
     "pydantic",
+    "openai",
 ]
