@@ -26,24 +26,40 @@ system_prompt = f"You are a friendly and helpful Company Research Assistant. \
     You will need to ask additional questions to help the user identify the company.\
     Your goal is to chat to the user and help them to uniquely identify a company."
 
-def ask_chatgpt(user_text: str) -> str:
+def ask_chatgpt(history: list) -> str:
 
     response = client.responses.create(
         model="gpt-4o-mini",
-        input="user_text",
+        input=history,
         instructions=system_prompt,
         tools=[{"type": "web_search"}]
     )
-    return response.output[0].content[0].text
+    return response
+#    return response.output[0].content[0].text
 
+user_prompt = "Which company are you looking for?:"
+history = [
+    {
+        "role": "user",
+        "content": user_prompt
+    }
+]
 
 while True:
     try:
-        msg = input("you: ").strip()
+        msg = input(f"{user_prompt} ").strip()
         if not msg: 
             continue
-        print("assistant:", ask_chatgpt(msg))
+        gpt_response = ask_chatgpt(history)
+        
     except (EOFError, KeyboardInterrupt):
         print("\nbye!")
         sys.exit(0)
+
+    user_prompt = "> "
+    text_response = gpt_response.output[0].content[0].text
+    print(f"response was: {text_response}")
+    history += [{"role": el.role, "content": el.content} for el in gpt_response.output]
+    history.append({ "role": "user", "content": user_prompt })
+
 
