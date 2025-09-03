@@ -1,5 +1,5 @@
 # company-insight-agent
-AI Agent writing Reports About Given Companies
+AI Agent that writes reports about given companies
 
 ## How To Run
 
@@ -8,6 +8,6 @@ AI Agent writing Reports About Given Companies
 uv sync
 
 # Run the app
-uv run a.py
+uv run chat_agent.py
 ```
 
