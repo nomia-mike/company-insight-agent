@@ -8,7 +8,7 @@ import os
 import json
 from dotenv import load_dotenv
 from openai import OpenAI
-from insightagent import research
+from insight_agent import research
 
 load_dotenv(override=True)
 
@@ -78,7 +78,6 @@ def ask_chatgpt(history: list, user_message: str):
         ],
         tools=tools
     )
-    #print(f"response type is {type(response)}")
     return response
 
 
